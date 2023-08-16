@@ -1,0 +1,185 @@
+
+:root {
+/* Front-end Style Guide */
+
+    /* Layout */
+    
+    /* The designs were created to the following widths: */
+    
+    --Mobile: 500px;
+    --desktop: 1440px;
+    
+    /* Neutral */
+/* Colors */
+
+    /* Primary */
+    /* (active input border) */
+    --Linear_gradient : linear-gradient(hsl(249, 99%, 64%) to hsl(278, 94%, 30%));
+    /* (input errors) */
+    --Red : hsl(0, 100%, 66%);
+
+    --White: hsl(0, 0%, 100%);
+    --Light_grayish_violet: hsl(270, 3%, 87%);
+    --Dark_grayish_violet: hsl(279, 6%, 55%);
+    --Very_dark_violet: hsl(278, 68%, 11%);
+    
+/* Typography */
+    
+    --size_sentence: font-size: 18px;
+
+/* Body Copy */
+
+    /* Font */
+
+    --space_grotesk: 'Space Grotesk', sans-serif;
+    --Weights: font-weights:500;
+
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-size: var(--size_sentence);
+    min-height: 100vh;
+    font-family: var(--space_grotesk);
+}
+.container{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100vh;
+    min-height: 100vh;
+    max-width: var(--desktop);
+    margin-top: 0;
+
+}
+.col-lg-25{
+    width: 30%;
+    height: 100%;
+    flex-direction: column;
+    margin-top: 0;
+    background-image: url('./images/bg-main-desktop.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+
+}
+.col-lg-75{
+    width: 70%;
+    height: 100%;
+    margin-top: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center
+}
+.form-card{
+    margin-top: 40%;
+    width: 20rem;
+    height: 20rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+input[type=text]{
+    width: 100%;
+    padding: 12px; /* Some padding */ 
+    border: 1px solid #ccc; /* Gray border */
+    border-radius: 4px; /* Rounded borders */
+    box-sizing: border-box; /* Make sure that padding and width stays in place */
+    margin-top: 6px; /* Add a top margin */
+    margin-bottom: 16px; /* Bottom margin */
+    resize: vertical
+}
+
+input:focus{
+    outline-style: solid;
+    outline-color:var(--Linear_gradient);
+    border: inherit;
+}
+.expire_date_cvc{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+input[name="mm"], input[name="yy"]{
+    width: 50px;
+
+}
+input[name="cvc"]{
+    width: 126px;
+}
+
+.expire_date, .cvc{
+    display: flex;
+    
+    justify-content: center;
+    align-content: center;
+    align-items: flex-start;
+}
+.expire_date{
+    flex-direction: row;
+}
+ 
+.cvc{
+    flex-direction: column;
+}
+
+.send{
+    width: 100%;
+    margin-top: 10px;
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+button[type=submit]{
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 8px;
+    padding: 10px 10px;
+    background-color: var(--Very_dark_violet);
+    color: var(--White);
+}
+label{
+    font-weight: 700;
+}
+.congratulation-card{
+    width: 20rem;
+    height: 20rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+}
+.descritpion{
+    font-size: 16px;
+    color: var(--Dark_grayish_violet);
+}
+@media screen and (max-width: 500px) {
+    
+    .container{
+        display: flex;
+        flex-direction: column;
+        margin-top: 0;
+    }
+    .col-lg-25{
+        width: 100%;
+        height: 240px;
+        margin-top: 0;
+        background-image: url('./images/bg-main-mobile.png');
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+    .col-lg-75{
+        width: 100%;
+        height: 70%;
+        
+    }
+    
+}
