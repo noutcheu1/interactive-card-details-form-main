@@ -174,10 +174,42 @@ let month = form['mm'];
 let years = form['yy'];
 let cvc = form['cvc'];
 
-let cvc_card = document.querySelector(".cvc-card");
-let date = document.querySelector(".date");
-let field_name = document.querySelector(".name");
 
+cvc.addEventListener('focusout', ()=>{
+    let cvc_card = document.querySelector(".cvc-card");
+
+    if (check_date_and_cvc(cvc, 3)) {
+        
+        cvc_card.innerHTML = cvc.value;
+    }
+});
+
+years.addEventListener('focusout', ()=>{
+    let years_value = document.querySelector(".YY");
+
+    if (check_date_and_cvc(years, 2)) {
+        
+        years_value.innerHTML = years.value;
+    }
+});
+
+month.addEventListener('focusout', ()=>{
+    let month_value = document.querySelector(".MM");
+
+    if (check_date_and_cvc(month, 2)) {
+        
+        month_value.innerHTML = month.value;
+    }
+});
+
+_name.addEventListener('focusout', ()=>{
+    let field_name = document.querySelector(".name");
+
+    if (check_name(_name)) {
+        _name.value = _name.value.charAt(0).toUpperCase() + _name.value.slice(1); 
+        field_name.innerHTML = _name.value;
+    }
+});
 
 console.log(number);
 
@@ -205,42 +237,47 @@ card_number.addEventListener("focusout", (event)=>{
 
 function format_number(list_number, decrease){
     let cpt = list_number.length
-    
     number_tour =Math.abs(cpt - decrease)
-    console.log(number_tour);
+    
     if (number_tour==0) {
+        console.log(number_tour);
+        for (let i = 0; i < number_tour; i++) {
+            const elements = list_number[i].toString(); 
+            if (elements.length < 4) {
+                console.log(list_number);
+                list_number[i] = format_caractere(list_number[i], decrease) ;    
+            } 
+            
+        }
         return list_number
     } 
     let result = '';
 
     for (let i = 0; i < number_tour; i++) {
         
-        list_number.push(' 0000') ;
+        list_number.push(format_caractere('0000')) ;
+         
+        list_number[i] = format_caractere(list_number[i], decrease) ;
         
     }
 
     return list_number
     
 }
+
 function format_caractere(str_input, decrease){
-    let length_str = str_input.length;
-    length_str = Math.abs(length_str - decrease)
-    console.log(length_str);
-    if (length_str > 2) {
+    let length_str = str_input.toString().length;
+    let str_chaine = str_input.toString();
+    console.log(str_input);
+    if (length_str < 4) {
         let str_output = "";
+        length_str = Math.abs(length_str - decrease)
         while (length_str>0) {
             str_output += "0"
             length_str--;
         }
-        return str_input + str_output;
+        return str_chaine + str_output;
     }
     return str_input;
     
 }
-
-    // console.log(format_number([], 4).replaceAll(',',' '));
-    // console.log(format_number(['1234'], 4));
-    // console.log(format_number(['1234', '0000'], 4));
-    // console.log(format_number(['1234', '1234', '0000'], 4));
-    // console.log(format_number(['1234', '1234', '1234', '0000'], 4));
-    // console.log(format_number(['1234', '1234' ,'1354', '1234'], 4));
