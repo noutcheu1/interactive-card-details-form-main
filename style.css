@@ -57,7 +57,7 @@ body{
 
 }
 .col-lg-25{
-    width: 35.22%;
+    width: 30%;
     height: 100%;
     flex-direction: column;
     margin-top: 0;
@@ -67,7 +67,7 @@ body{
 
 }
 .col-lg-75{
-    width: 64.78%;
+    width: 70%;
     height: 100%;
     margin-top: 0;
     display: flex;
@@ -205,16 +205,34 @@ label{
 .front-card{
     background: url('./images/bg-card-front.png') no-repeat;
     background-size: contain;
-    top: 185px;
+    top: 112px;
     left: 162px;
 }
+.description {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    top:19px;
+    left: 34px;
+}
 .detail-card{
+    margin-top: 14px;
     display: flex;
     justify-content: center;
     align-items: center;
     align-content: center;
     flex-direction: row;
     font-size: 16px;
+}
+.name{
+    float: left;
+    position: relative;
+    left: -4rem;
+}
+.date{
+    float: right;
+    position: relative;
+    right: -3.8rem;
 }
 .card-logo{
     display: inline;
@@ -239,8 +257,14 @@ label{
 .back-card{
     background: url('./images/bg-card-back.png') no-repeat;
     background-size: contain;
-    top: 221px;
-    left: 256px;
+    top: 178px;
+    left: 225px;
+}
+.cvc-card{
+    position: relative;
+    left: 23rem;
+    top: 7rem;
+    color: var(--White);
 }
 input.error{
     border-color: var(--Red);
