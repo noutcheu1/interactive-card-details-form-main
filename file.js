@@ -47,7 +47,7 @@ form.addEventListener("submit", (event)=>{
 function showMessage(input, message, type){
     let msg = input.parentNode.querySelector("small");
 	msg.innerText = message;
-    console.log(input, msg.innerText);
+    // console.log(input, msg.innerText);
 }
 
 function showError(input, message){
@@ -71,18 +71,20 @@ function hasValue(input){
 }
 
 
-function splitNumber(chaine, number_split){
-    let number_to_split = "000"
+function splitNumber(chaine, number_of_split){
+    let number_to_split = chaine
     let debut = 0;
-    let end = number_split;
-    let result = " ";
-    let count = chaine.length / number_split;
-    console.log(count);
+    let end = number_of_split;
+    let result = [];
+    let count = (number_to_split.length / number_of_split);
+    // console.log(count);
 
-    while(count >= 0){
-        result = result + " " + number_to_split.substring(debut, end)
+    while(count > 0){
+        result.push(number_to_split.substring(debut, end) );
         debut = end 
-        end = end + chaine
+        end = end + number_of_split
+        
+        // console.log(debut,' ', end, ' \n');
         count--;
     }
     return result;
@@ -163,3 +165,119 @@ function checkDigitLength(cvc, number_digit) {
     
 }
 
+
+
+let _name = form['name'];
+console.log(_name);
+let card_number = form['number_card'];
+let month = form['mm'];
+let years = form['yy'];
+let cvc = form['cvc'];
+
+
+cvc.addEventListener('focusout', ()=>{
+    let cvc_card = document.querySelector(".cvc-card");
+
+    if (check_date_and_cvc(cvc, 3)) {
+        
+        cvc_card.innerHTML = cvc.value;
+    }
+});
+
+years.addEventListener('focusout', ()=>{
+    let years_value = document.querySelector(".YY");
+
+    if (check_date_and_cvc(years, 2)) {
+        
+        years_value.innerHTML = years.value;
+    }
+});
+
+month.addEventListener('focusout', ()=>{
+    let month_value = document.querySelector(".MM");
+
+    if (check_date_and_cvc(month, 2)) {
+        
+        month_value.innerHTML = month.value;
+    }
+});
+
+_name.addEventListener('focusout', ()=>{
+    let field_name = document.querySelector(".name");
+
+    if (check_name(_name)) {
+        _name.value = _name.value.charAt(0).toUpperCase() + _name.value.slice(1); 
+        field_name.innerHTML = _name.value;
+    }
+});
+
+console.log(number);
+
+card_number.addEventListener("focusout", (event)=>{
+    let number = document.querySelector('#number');
+    let field_number = card_number.value.replaceAll(' ','').toUpperCase(); 
+    if (check_date_and_cvc(card_number, 16)) {
+         
+        console.log(field_number);  
+        field_number = format_number(splitNumber(field_number, 4), 4)
+        console.log(field_number);
+   }
+   list_number = format_number(splitNumber(field_number, 4), 4)
+  
+   console.log(field_number.length);
+   let result = ""
+   for (let i = 0; i < list_number.length; i++) {
+        result += " "+ format_caractere(list_number[i], 4   );
+    
+   }
+   number.innerHTML = result ;
+   card_number.value = card_number.value.toUpperCase()
+
+});
+
+function format_number(list_number, decrease){
+    let cpt = list_number.length
+    number_tour =Math.abs(cpt - decrease)
+    
+    if (number_tour==0) {
+        console.log(number_tour);
+        for (let i = 0; i < number_tour; i++) {
+            const elements = list_number[i].toString(); 
+            if (elements.length < 4) {
+                console.log(list_number);
+                list_number[i] = format_caractere(list_number[i], decrease) ;    
+            } 
+            
+        }
+        return list_number
+    } 
+    let result = '';
+
+    for (let i = 0; i < number_tour; i++) {
+        
+        list_number.push(format_caractere('0000')) ;
+         
+        list_number[i] = format_caractere(list_number[i], decrease) ;
+        
+    }
+
+    return list_number
+    
+}
+
+function format_caractere(str_input, decrease){
+    let length_str = str_input.toString().length;
+    let str_chaine = str_input.toString();
+    console.log(str_input);
+    if (length_str < 4) {
+        let str_output = "";
+        length_str = Math.abs(length_str - decrease)
+        while (length_str>0) {
+            str_output += "0"
+            length_str--;
+        }
+        return str_chaine + str_output;
+    }
+    return str_input;
+    
+}

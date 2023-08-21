@@ -230,6 +230,8 @@ label{
     left: -4rem;
 }
 .date{
+    display: flex;
+    flex-direction: row;
     float: right;
     position: relative;
     right: -3.8rem;
