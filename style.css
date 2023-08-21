@@ -388,3 +388,94 @@ input.error{
         
     }
 }
+
+@media screen and (max-width: 375px) {
+    
+    .front-card{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: baseline   ;
+        align-content: flex-end;
+        color: var(--White);
+        position: relative;
+        width:  288px;
+        height: 239px;
+        padding: 12px;
+    }
+
+    .front-card{
+        background: url('./images/bg-card-front.png') no-repeat;
+        background-size: contain;
+        top: 136px;
+        left: 12px;
+        z-index: 1;
+    }
+    .description {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        top:-41px;
+        left: 13px;
+    }
+    .detail-card{
+        margin-top: 7px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+        flex-direction: row;
+        font-size: 12px;
+    }
+    #number{
+        font-size: 20px;
+    }
+    .name{
+        float: left;
+        position: relative;
+        left: -1.7rem;
+    }
+    .date{
+        display: flex;
+        flex-direction: row;
+        float: right;
+        position: relative;
+        right: -1.7rem;
+    }
+    .card-logo{
+        display: inline;
+        position: relative;
+        background: url('/images/card-logo.svg') no-repeat;
+        background-size: contain;
+        width: 75px;
+        height: 57px;
+        margin-top: -38px;
+    }
+
+    .back-card{
+        
+        display: flex;
+        flex-direction: column;
+        color: var(--White);
+        position: relative;
+        width:  288px;
+        height: 245px;
+    }
+    .back-card{
+        background: url('./images/bg-card-back.png') no-repeat;
+        background-size: contain;
+        top: -194px;
+        left: 62px;
+    }
+    .cvc-card{
+        position: relative;
+        left: 14rem;
+        top: 4.2rem;
+        color: var(--White);
+        box-sizing: border-box;
+        width: 60px;
+        font-size: 15px;
+        
+    }
+    
+}
