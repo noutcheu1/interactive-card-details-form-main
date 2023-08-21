@@ -47,7 +47,7 @@ form.addEventListener("submit", (event)=>{
 function showMessage(input, message, type){
     let msg = input.parentNode.querySelector("small");
 	msg.innerText = message;
-    console.log(input, msg.innerText);
+    // console.log(input, msg.innerText);
 }
 
 function showError(input, message){
@@ -71,18 +71,20 @@ function hasValue(input){
 }
 
 
-function splitNumber(chaine, number_split){
-    let number_to_split = "000"
+function splitNumber(chaine, number_of_split){
+    let number_to_split = chaine
     let debut = 0;
-    let end = number_split;
-    let result = " ";
-    let count = chaine.length / number_split;
-    console.log(count);
+    let end = number_of_split;
+    let result = [];
+    let count = (number_to_split.length / number_of_split);
+    // console.log(count);
 
-    while(count >= 0){
-        result = result + " " + number_to_split.substring(debut, end)
+    while(count > 0){
+        result.push(number_to_split.substring(debut, end) );
         debut = end 
-        end = end + chaine
+        end = end + number_of_split
+        
+        // console.log(debut,' ', end, ' \n');
         count--;
     }
     return result;
@@ -163,3 +165,82 @@ function checkDigitLength(cvc, number_digit) {
     
 }
 
+
+
+let _name = form['name'];
+console.log(_name);
+let card_number = form['number_card'];
+let month = form['mm'];
+let years = form['yy'];
+let cvc = form['cvc'];
+
+let cvc_card = document.querySelector(".cvc-card");
+let date = document.querySelector(".date");
+let field_name = document.querySelector(".name");
+
+
+console.log(number);
+
+card_number.addEventListener("focusout", (event)=>{
+    let number = document.querySelector('#number');
+    let field_number = card_number.value.replaceAll(' ','').toUpperCase(); 
+    if (check_date_and_cvc(card_number, 16)) {
+         
+        console.log(field_number);  
+        field_number = format_number(splitNumber(field_number, 4), 4)
+        console.log(field_number);
+   }
+   list_number = format_number(splitNumber(field_number, 4), 4)
+  
+   console.log(field_number.length);
+   let result = ""
+   for (let i = 0; i < list_number.length; i++) {
+        result += " "+ format_caractere(list_number[i], 4   );
+    
+   }
+   number.innerHTML = result ;
+   card_number.value = card_number.value.toUpperCase()
+
+});
+
+function format_number(list_number, decrease){
+    let cpt = list_number.length
+    
+    number_tour =Math.abs(cpt - decrease)
+    console.log(number_tour);
+    if (number_tour==0) {
+        return list_number
+    } 
+    let result = '';
+
+    for (let i = 0; i < number_tour; i++) {
+        
+        list_number.push(' 0000') ;
+        
+    }
+
+    return list_number
+    
+}
+function format_caractere(str_input, decrease){
+    let length_str = str_input.length;
+    length_str = Math.abs(length_str - decrease)
+    console.log(length_str);
+    if (length_str > 2) {
+        let str_output = "";
+        while (length_str>0) {
+            str_output += "0"
+            length_str--;
+        }
+        return str_input + str_output;
+    }
+    return str_input;
+    
+}
+
+    // console.log(format_number([], 4).replaceAll(',',' '));
+    // console.log(format_number(['1234'], 4));
+    // console.log(format_number(['1234', '0000'], 4));
+    // console.log(format_number(['1234', '1234', '0000'], 4));
+    // console.log(format_number(['1234', '1234', '1234', '0000'], 4));
+    // console.log(format_number(['1234', '1234' ,'1354', '1234'], 4));
