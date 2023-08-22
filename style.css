@@ -239,7 +239,7 @@ label{
 .card-logo{
     display: inline;
     position: relative;
-    background: url('/images/card-logo.svg') no-repeat;
+    background: url('./images/card-logo.svg') no-repeat;
     background-size: contain;
     width: 108px;
     height: 57px;
